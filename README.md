@@ -9,14 +9,14 @@
 https://deploy-preview-123--dainty-lebkuchen-a9b615.netlify.app
 
 ## Ссылки
-- [Авторизация](https://deploy-preview-123--dainty-lebkuchen-a9b615.netlify.app/templates/pages/login/login.html)
-- [Регистрация](https://deploy-preview-123--dainty-lebkuchen-a9b615.netlify.app/templates/pages/signup/signup.html)
-- [Профиль](https://deploy-preview-123--dainty-lebkuchen-a9b615.netlify.app/templates/pages/profile/profile.html)
-- [Редактирование профиля](https://deploy-preview-123--dainty-lebkuchen-a9b615.netlify.app/templates/pages/profile/profileEdit.html)
-- [Обновить пароль](https://deploy-preview-123--dainty-lebkuchen-a9b615.netlify.app/templates/pages/profile/profileEditPassword.html)
-- [404](https://deploy-preview-123--dainty-lebkuchen-a9b615.netlify.app/templates/pages/error/404.html)
-- [500](https://deploy-preview-123--dainty-lebkuchen-a9b615.netlify.app/templates/pages/error/500.html)
-- [Чаты (заглушка)](https://deploy-preview-123--dainty-lebkuchen-a9b615.netlify.app/templates/chats/empty.html)
+- [Авторизация](https://dainty-lebkuchen-a9b615.netlify.app/templates/pages/login/login.html)
+- [Регистрация](https://dainty-lebkuchen-a9b615.netlify.app/templates/pages/signup/signup.html)
+- [Профиль](https://dainty-lebkuchen-a9b615.netlify.app/templates/pages/profile/profile.html)
+- [Редактирование профиля](https://dainty-lebkuchen-a9b615.netlify.app/templates/pages/profile/profileEdit.html)
+- [Обновить пароль](https://dainty-lebkuchen-a9b615.netlify.app/templates/pages/profile/profileEditPassword.html)
+- [404](https://dainty-lebkuchen-a9b615.netlify.app/templates/pages/error/404.html)
+- [500](https://dainty-lebkuchen-a9b615.netlify.app/templates/pages/error/500.html)
+- [Чаты (заглушка)](https://dainty-lebkuchen-a9b615.netlify.app/templates/chats/empty.html)
 
 
 
