@@ -6,7 +6,7 @@
 - `npm run start` — сборка и запуск проекта на express
 - `npm run preview` — предпросмотр
 ## Netlify
-https://deploy-preview-123--dainty-lebkuchen-a9b615.netlify.app
+https://dainty-lebkuchen-a9b615.netlify.app
 
 ## Ссылки
 - [Авторизация](https://dainty-lebkuchen-a9b615.netlify.app/templates/pages/login/login.html)
