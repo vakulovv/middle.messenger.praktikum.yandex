@@ -1,0 +1,35 @@
+/* Формы */
+
+/* Блок label */
+.label {
+  font-size: $text-size;
+  color: $color-gray;
+
+  &_toggle:has(+ input:not(:placeholder-shown)) {
+    visibility: visible;
+    font-size: 0.8em;
+  }
+  &_toggle:has(+ input:placeholder-shown) {
+    visibility: hidden;
+  }
+}
+
+/* Блок input-text */
+.text-input {
+  border: none;
+  width: 100%;
+  font-size: 1em;
+  &_flat {
+    padding: 0;
+    height: 30px;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    &_ocean {
+      border-color: $color-ocean;
+    }
+    &_full {
+      display: block;
+      width: 100%;
+    }
+  }
+}

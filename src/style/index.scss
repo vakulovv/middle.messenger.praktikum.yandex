@@ -1,0 +1,12 @@
+/* Общие стили */
+@import "constant";
+@import "mixin";
+@import "main";
+@import "form";
+
+/* Стили компонентов и страниц */
+@import "./src/templates/pages/login/login";
+@import "./src/templates/pages/signup/signup";
+@import "./src/templates/pages/profile/profile";
+
+

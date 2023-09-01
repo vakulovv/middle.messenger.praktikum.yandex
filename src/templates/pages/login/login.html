@@ -1,0 +1,33 @@
+{{#> layout }}
+    <div class="container main__full main__vcenter">
+        <div class="row row_center">
+            <div class="col-md-3">
+                <div class="card shadow corner p-4">
+                    <h1 class="header text-center">Вход</h1>
+                    <form action="#" name="auth" class="login-form">
+                        <div class="mb-1">
+                            <label for="login" class="label label_toggle">Логин</label>
+                            <input id="login" type="text" name="login" placeholder="Логин" class="text-input text-input_flat text-input_flat_ocean" value=""/>
+                        </div>
+                        <div class="mb-1">
+                            <label for="password" class="label label_toggle">Пароль</label>
+                            <input id="password" type="password" name="password" placeholder="Пароль" class="text-input text-input_flat text-input_flat_ocean" value="" />
+                        </div>
+                        <div class="login-form__buttons">
+                            <div class="mb-1">
+                                <button type="submit" class="btn btn_full btn_md btn_ocean btn_corner">
+                                    Войти
+                                </button>
+                            </div>
+                            <div>
+                                <button type="button" class="btn btn_full btn_sm btn_subtle">
+                                    Нет аккаунта?
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{{/layout}}
