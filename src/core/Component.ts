@@ -13,9 +13,13 @@ enum Events {
 
 export default abstract class Component {
   protected events: IEvents = {};
+
   protected domElement:Element | null;
+
   protected children: Array<Record<string, any>> = [];
+
   protected eventBus: () => EventBus;
+
   protected props: IProps;
 
   constructor(props: IProps, children?: Record<string, any>) {
