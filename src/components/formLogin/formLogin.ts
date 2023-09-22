@@ -34,7 +34,6 @@ export default class FormLogin extends Component {
     const { props } = this;
     const { error } = props.state;
     const updateError = { ...error, [name]: errorField[name] };
-
     this.setProps({
       ...input,
       error: updateError,
@@ -56,6 +55,9 @@ export default class FormLogin extends Component {
   }
 
   componentDidUpdate(): boolean {
+    const { state } = this.props;
+    /* eslint no-console: 0 */
+    console.log(state);
     return true;
   }
 

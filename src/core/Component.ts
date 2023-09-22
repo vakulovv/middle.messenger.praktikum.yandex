@@ -13,14 +13,9 @@ enum Events {
 
 export default abstract class Component {
   protected events: IEvents = {};
-
   protected domElement:Element | null;
-
-  /* eslint no-use-before-define: 0 */
   protected children: Array<Record<string, any>> = [];
-
   protected eventBus: () => EventBus;
-
   protected props: IProps;
 
   constructor(props: IProps, children?: Record<string, any>) {
@@ -41,7 +36,6 @@ export default abstract class Component {
 
   _init() {
     this.init();
-    this._render();
   }
 
   _registerEvents(eventBus: EventBus) {
@@ -127,7 +121,7 @@ export default abstract class Component {
       this._componentWillUnmount();
       this._removeListeners();
       if (this.children) {
-        // this.children.forEach(({embed, ...rest}) => rest.unmountComponent());
+        //
       }
     }
   }
@@ -165,18 +159,17 @@ export default abstract class Component {
   }
 
   private _makePropsProxy<T extends Record<string, any>>(props: T) {
-    const self = this;
     return new Proxy(props, {
       set(target, prop, value) {
-        const prev = target.state[prop];
         /* eslint no-param-reassign: 0 */
         target.state[prop] = value;
-        self.eventBus().emit(Events.FLOW_CDU, prev, value);
         return true;
       },
-      // deleteProperty: function() {
-      //     throw new Error("Нет доступа")
-      // }
+      deleteProperty() {
+        throw new Error('Нет доступа');
+        /* eslint no-unreachable: 0 */
+        return true;
+      },
     });
   }
 }

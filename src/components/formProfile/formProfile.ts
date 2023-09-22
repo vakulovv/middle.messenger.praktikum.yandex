@@ -61,6 +61,9 @@ export default class FormProfile extends Component {
   }
 
   componentDidUpdate(): boolean {
+    const { state } = this.props;
+    /* eslint no-console: 0 */
+    console.log(state);
     return true;
   }
 

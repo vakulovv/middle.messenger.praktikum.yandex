@@ -43,7 +43,6 @@ export default class FormMessage extends Component {
     const formData = new FormData(form);
     const formObject = Object.fromEntries(formData.entries());
     const error = formValidate(formObject);
-
     this.setProps({ ...formObject, error });
   }
 
@@ -54,6 +53,9 @@ export default class FormMessage extends Component {
   }
 
   componentDidUpdate(): boolean {
+    const { state } = this.props;
+    /* eslint no-console: 0 */
+    console.log(state);
     return true;
   }
 

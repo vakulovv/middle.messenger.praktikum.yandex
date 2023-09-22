@@ -7,7 +7,7 @@
     "import/resolver": {
       "node": {
         "extensions": [".js", ".jsx", ".ts", ".tsx", ".hbs"],
-        "moduleDirectory": ["src", "node_modules"]
+        "moduleDirectory": ["src"]
       }
     }
   },

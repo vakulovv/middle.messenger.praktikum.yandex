@@ -56,9 +56,8 @@ const validateField: Record<string, ICheck> = {
   [VALID_NAME]: (value) => !!value.match(/^([A-ZА-ЯЁ])[a-zA-Zа-яёА-ЯЁ-]+$/),
   [MIN_LENGTH]: (value, length) => (length ? value.length >= length : true),
   [MAX_LENGTH]: (value, length) => (length ? value.length <= length : true),
-  // [REQUIRED]: (value) => value,
+  [REQUIRED]: (value) => !!value,
 };
-// type Fields = Array<Record<string, string | number>>;
 
 const formValidate = (fields: Record<string, any>) : Record<string, any> => {
   if (Object.keys(fields).length === 0) {
@@ -71,8 +70,7 @@ const formValidate = (fields: Record<string, any>) : Record<string, any> => {
         return acc;
       }
       const validates = rules[key];
-      /* eslint-disable-next-line */
-    for (const [rule, valueRule] of Object.entries(validates)) {
+      for (const [rule, valueRule] of Object.entries(validates)) {
         if (valueRule === undefined || valueRule === null || valueRule === false) {
           return acc;
         }
