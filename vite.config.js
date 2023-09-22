@@ -22,13 +22,13 @@ export default defineConfig({
       }
     }
   },
-  plugins: [
-    handlebars( {
-      root: './src',
-      context(pagePath) {
-        return pageData[pagePath];
-      },
-      partialDirectory: resolve(__dirname, './src/templates/layout'),
-    }),
-  ],
+  // plugins: [
+  //   handlebars( {
+  //     root: './src',
+  //     context(pagePath) {
+  //       return pageData[pagePath];
+  //     },
+  //     partialDirectory: resolve(__dirname, './src/templates/layout'),
+  //   }),
+  // ],
 })
