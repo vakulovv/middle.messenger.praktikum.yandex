@@ -1,5 +1,5 @@
 # Самостоятельный проект чата
-Сборка Vite, шаблонизатор Handlebars, сервер Express
+Сборка Vite, шаблонизатор Handlebars, сервер Express.
 ## Команды для запуска
 - `npm run dev` — версия для разработки
 - `npm run build` — сборка прода
@@ -7,6 +7,7 @@
 - `npm run preview` — предпросмотр
 ## Netlify
 https://dainty-lebkuchen-a9b615.netlify.app
+
 
 ## Ссылки
 - [Авторизация](https://dainty-lebkuchen-a9b615.netlify.app?page=login)
