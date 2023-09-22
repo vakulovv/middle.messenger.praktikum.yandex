@@ -1,4 +1,4 @@
-import Handlebars from 'Handlebars';
+import Handlebars from 'handlebars';
 import './style/index.scss';
 import './templates/pages/login/login.ts';
 import * as Components from './components/index.ts';
@@ -12,7 +12,7 @@ import indexPage from './templates/pages/index.hbs?raw';
 import { register } from './core/Template.ts';
 import ProfileEditPasswordPage from './templates/pages/profileEditPassword/index.ts';
 import ProfilePage from './templates/pages/profile/index.ts';
-import Component from './core/Component';
+import Component from './core/Component.ts';
 
 Handlebars.registerPartial('layoutProfile', layoutProfile);
 

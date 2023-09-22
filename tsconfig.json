@@ -1,15 +1,15 @@
 {
   "compilerOptions": {
     "outDir": "dist",
-    "target": "es2020",
+    "target": "esNext",
     "declaration": false,
-    "module": "es2020",
+    "module": "esNext",
     "strictNullChecks": true,
     "sourceMap": true,
     "noImplicitAny": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noEmit": false,
+    "noEmit": true,
     "moduleResolution": "node",
     "allowImportingTsExtensions": true
   },

@@ -1,4 +1,4 @@
-import Handlebars, { HelperOptions } from 'Handlebars';
+import Handlebars, { HelperOptions } from 'handlebars';
 
 export function compile(template:string, props: object) {
   const children = [] as Array<any>;
