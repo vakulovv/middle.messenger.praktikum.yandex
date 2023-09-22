@@ -1,4 +1,4 @@
-// import Handlebars from 'handlebars/dist/handlebars.js';
+import Handlebars from 'handlebars';
 import './style/index.scss';
 import './templates/pages/login/login.ts';
 import * as Components from './components/index.ts';
@@ -7,14 +7,14 @@ import SignupPage from './templates/pages/signup/index.ts';
 import LoginPage from './templates/pages/login/index.ts';
 import ChatsPage from './templates/pages/chats/index.ts';
 import ErrorPage from './templates/pages/error/index.ts';
-// import layoutProfile from './templates/layout/layoutProfile.hbs?raw';
+import layoutProfile from './templates/layout/layoutProfile.hbs?raw';
 import indexPage from './templates/pages/index.hbs?raw';
 import { register } from './core/Template.ts';
 import ProfileEditPasswordPage from './templates/pages/profileEditPassword/index.ts';
 import ProfilePage from './templates/pages/profile/index.ts';
 import Component from './core/Component.ts';
 
-// Handlebars.registerPartial('layoutProfile', layoutProfile);
+Handlebars.registerPartial('layoutProfile', layoutProfile);
 
 Object.entries(Components).forEach((component) => register(component));
 
