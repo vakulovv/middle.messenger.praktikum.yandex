@@ -38,5 +38,7 @@
   },
   "homepage": "https://github.com/vakulovv/middle.messenger.praktikum.yandex#readme",
   "description": "",
-  "dependencies": {}
+  "dependencies": {
+    "vite-plugin-handlebars": "^1.6.0"
+  }
 }
