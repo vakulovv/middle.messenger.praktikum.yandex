@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
-    "build": "vite build --emptyOutDir",
+    "build": "tsc --noEmitvite && build --emptyOutDir",
     "start": "npm run build && node ./server.js",
     "preview": "vite preview"
   },
