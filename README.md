@@ -9,14 +9,14 @@
 https://dainty-lebkuchen-a9b615.netlify.app
 
 ## Ссылки
-- [Авторизация](https://dainty-lebkuchen-a9b615.netlify.app/templates/pages/login/login.html)
-- [Регистрация](https://dainty-lebkuchen-a9b615.netlify.app/templates/pages/signup/signup.html)
-- [Профиль](https://dainty-lebkuchen-a9b615.netlify.app/templates/pages/profile/profile.html)
-- [Редактирование профиля](https://dainty-lebkuchen-a9b615.netlify.app/templates/pages/profile/profileEdit.html)
-- [Обновить пароль](https://dainty-lebkuchen-a9b615.netlify.app/templates/pages/profile/profileEditPassword.html)
-- [404](https://dainty-lebkuchen-a9b615.netlify.app/templates/pages/error/404.html)
-- [500](https://dainty-lebkuchen-a9b615.netlify.app/templates/pages/error/500.html)
-- [Чаты (заглушка)](https://dainty-lebkuchen-a9b615.netlify.app/templates/chats/empty.html)
+- [Авторизация](https://dainty-lebkuchen-a9b615.netlify.app?page=login)
+- [Регистрация](https://dainty-lebkuchen-a9b615.netlify.app?page=signup)
+- [Профиль](https://dainty-lebkuchen-a9b615.netlify.app?page=profile)
+- [Редактирование профиля](https://dainty-lebkuchen-a9b615.netlify.app?page=profileEdit)
+- [Обновить пароль](https://dainty-lebkuchen-a9b615.netlify.app?page=profileEditPassword)
+- [404](https://dainty-lebkuchen-a9b615.netlify.app?page=404)
+- [500](https://dainty-lebkuchen-a9b615.netlify.app?page=500)
+- [Чаты](https://dainty-lebkuchen-a9b615.netlify.app?page=chats)
 
 
 

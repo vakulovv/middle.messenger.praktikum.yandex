@@ -55,6 +55,10 @@ body {
   display: flex;
   flex-wrap: wrap;
 
+  &_nowrap {
+    flex-wrap: nowrap;
+  }
+
   &_between {
     justify-content: space-between;
   }
@@ -62,6 +66,10 @@ body {
   &_center {
     justify-content: center;
     align-items: center;
+  }
+
+  &_end {
+    justify-content: end;
   }
 
   &_middle {
@@ -73,7 +81,7 @@ body {
   }
 
   .col-md {
-    flex-basis:0%;
+    flex-basis:0;
     flex-grow: 1;
     max-width: 100%
   }
@@ -113,6 +121,13 @@ body {
     flex: 0 0 50%;
     max-width: 50%
   }
+
+  &_gap {
+    column-gap: 1em;
+  }
+  &_gap-sm {
+    column-gap: 0.5em;
+  }
 }
 
 /* shadow */
@@ -123,6 +138,15 @@ body {
 /* border-radius */
 .corner {
   @include border-radius($radius: 12px);
+}
+
+.corner-small {
+  @include border-radius($radius: 5px);
+}
+
+/* overflow */
+.overflow-scroll {
+  overflow-y: scroll;
 }
 
 /* padding */
@@ -215,6 +239,10 @@ h2 {
   font-size: 1.2em;
 }
 
+h3, h4 {
+  margin: 0;
+}
+
 /* текст */
 .text-bold {
   font-weight: 600;
@@ -223,6 +251,19 @@ h2 {
 
 .text-muted {
   color: $color-gray;
+}
+
+.text-small {
+  font-size: 0.9em;
+  line-height: 1.2em;
+}
+
+.text-light {
+  color: #999999;
+}
+
+.text-error {
+  color: #f30909;
 }
 
 .text-center {
@@ -277,6 +318,11 @@ h2 {
     background: none;
   }
 
+  &_light {
+    color: #999999;
+    background: none;
+  }
+
   &_ocean {
     background: $color-ocean;
   }
@@ -295,7 +341,6 @@ h2 {
 }
 
 /* List */
-
 .flat-list {
   padding: 0;
   list-style-type: none;
@@ -318,6 +363,11 @@ h2 {
   align-items: center;
   background: $background_avatar;
   @include border-radius($radius: 50%);
+
+  &_small {
+    width: 60px;
+    height: 60px;
+  }
 }
 
 /* error */
@@ -327,19 +377,26 @@ h2 {
   font-weight: 400;
 }
 
-/* back */
 
-.btn-prev {
+/* back */
+.btn-icon {
   display: flex;
-  height: 100%;
-  color: white;
-  width: 64px;
+
   z-index: 10;
   align-items: center;
   justify-content: center;
   border: none;
-  border-right: 1px solid #d5d5d5;
+  color: white;
   cursor: pointer;
+  background: none;
+  padding: 0;
+
+  &_full {
+
+    height: 100%;
+    color: white;
+    width: 64px;
+  }
 
   .arrow-icon {
     width: 38px;
@@ -355,4 +412,31 @@ h2 {
     font-family: Avenir,Helvetica,Arial, sans-serif;
     @include border-radius($radius: 50%);
   }
+
+  &_gray {
+    background: #F5F5F5
+  }
+
+  &_prev {
+    border-right: 1px solid #d5d5d5;
+    padding: 0 10px;
+  }
 }
+
+/* Circle */
+.circle {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: $color-ocean;
+  color: white;
+  @include border-radius($radius: 50%);
+
+  &_small {
+    width: 20px;
+    height: 20px;
+  }
+}
+

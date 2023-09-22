@@ -1,0 +1,9 @@
+.contacts {
+  list-style: none;
+  padding: 0;
+
+  &__item {
+    padding: 1em 0;
+    border-bottom: 1px solid #d0d0d0
+  }
+}

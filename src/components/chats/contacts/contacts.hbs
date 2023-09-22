@@ -1,0 +1,10 @@
+<ul class="contacts m-1">
+    {{#each contacts }}
+        <li class="contacts__item">{{{ ContactsItem
+            user=user
+            unread=unread
+            message=message
+            time=time
+            }}}  </li>
+    {{/each}}
+</ul>
