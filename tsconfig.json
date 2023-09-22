@@ -11,7 +11,8 @@
     "noUnusedParameters": true,
     "noEmit": true,
     "moduleResolution": "node",
-    "allowImportingTsExtensions": true
+    "allowImportingTsExtensions": true,
+    "allowSyntheticDefaultImports": true
   },
   "include": ["src", "typings/hbs.d.ts"],
 }
