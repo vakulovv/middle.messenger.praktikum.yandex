@@ -1,6 +1,6 @@
+import Handlebars from 'Handlebars';
 import './style/index.scss';
 import './templates/pages/login/login.ts';
-import Handlebars from 'Handlebars';
 import * as Components from './components/index.ts';
 import ProfileEditPage from './templates/pages/profileEdit/index.ts';
 import SignupPage from './templates/pages/signup/index.ts';
