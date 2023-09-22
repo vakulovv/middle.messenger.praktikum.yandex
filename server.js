@@ -10,5 +10,6 @@ app.get('/', (req, res) => {
 });
 
 app.listen(PORT, () => {
+  /* eslint no-console: 0 */
   console.log(`Running on port ${PORT}!`);
 });
