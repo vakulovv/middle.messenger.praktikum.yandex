@@ -119,7 +119,7 @@ export default class FormProfile extends Component {
                         </div>
                         <div class="mb-1">
                             {{{ Field 
-                                name="name" 
+                                name="display_name" 
                                 label="Имя в чате"
                                 class="text-input_flat text-input_flat_ocean"
                                 toggle=true

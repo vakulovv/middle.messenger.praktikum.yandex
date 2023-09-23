@@ -2,7 +2,7 @@ import EventBus from './EventBus';
 import { compile, register } from './Template';
 
 type IProps = Record<string, any>;
-type IEvents = Record<string, (event: string) => void>
+type IEvents = Record<string, (event: Event) => void>
 
 enum Events {
     INIT = 'init',
@@ -125,7 +125,7 @@ export default abstract class Component {
       this._componentWillUnmount();
       this._removeListeners();
       if (this.children) {
-        //
+        this.children.forEach(({ component }) => component.unmountComponent());
       }
     }
   }
@@ -135,6 +135,12 @@ export default abstract class Component {
   }
 
   _removeListeners() {
+    if (this.events) {
+      Object.entries(this.events).forEach(([event, callback]) => {
+        this.domElement?.removeEventListener(event, callback);
+      });
+    }
+
     return true;
   }
 
