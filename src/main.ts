@@ -13,39 +13,54 @@ import { register } from './core/Template.ts';
 import ProfileEditPasswordPage from './templates/pages/profileEditPassword/index.ts';
 import ProfilePage from './templates/pages/profile/index.ts';
 import Component from './core/Component.ts';
+import Router from './core/Router.ts';
+import store, {StoreEvents} from './core/Store.ts';
+import UserController from "./controller/UserController";
 
 Handlebars.registerPartial('layoutProfile', layoutProfile);
 
 Object.entries(Components).forEach((component) => register(component));
 
-const Login = new LoginPage();
-const Signup = new SignupPage();
-const Profile = new ProfilePage();
-const ProfileEdit = new ProfileEditPage();
-const Chats = new ChatsPage();
-const Error404 = new ErrorPage({ code: 404, text: 'Не туда попали' });
-const Error500 = new ErrorPage({ code: 500, text: 'Мы уже фиксим' });
-const ProfileEditPassword = new ProfileEditPasswordPage();
+// const Login = new LoginPage();
 
-const urlParams = new URLSearchParams(window.location.search);
-const page: string | null = urlParams.get('page');
+// const urlParams = new URLSearchParams(window.location.search);
+// const page: string | null = urlParams.get('page');
 
-const pages: Record<string, Component> = {
-  login: Login,
-  signup: Signup,
-  chats: Chats,
-  profile: Profile,
-  profileEdit: ProfileEdit,
-  404: Error404,
-  500: Error500,
-  profileEditPassword: ProfileEditPassword,
-};
+const userController  = new UserController();
+
+
 const root = document.querySelector('#root');
-if (root) {
-  if (page) {
-    const node = pages[page].getNode();
-    root.append(node);
-  } else {
-    root.innerHTML = indexPage;
-  }
+
+const router = new Router(root);
+
+const state = store.getState();
+
+store.on(StoreEvents.Updated, () => {
+    const state = store.getState();
+    console.log("state updated", state);
+
+    if (!state.user) {
+        router.use('login', LoginPage);
+        router.use('sign-up', SignupPage);
+
+    } else {
+        router.use('settings', ProfilePage);
+        router.use('profile', ProfilePage);
+        router.use('messenger', ChatsPage);
+
+        router.go('messenger');
+    }
+
+    router.error('404', ErrorPage);
+    router.start();
+});
+
+const auth = window.localStorage.getItem('auth');
+
+if (auth && JSON.parse(auth)) {
+    userController.getUser();
+} else {
+    store.set('user', null);
 }
+
+

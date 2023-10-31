@@ -1,5 +1,7 @@
 import EventBus from './EventBus';
 import { compile, register } from './Template';
+import Router from "./Router";
+import Api from '../services/index';
 
 type IProps = Record<string, any>;
 type IEvents = Record<string, (event: Event) => void>
@@ -21,12 +23,16 @@ export default abstract class Component {
   protected eventBus: () => EventBus;
 
   protected props: IProps;
+  private router: any;
+  protected api: Api;
 
   constructor(props: IProps, children?: Record<string, any>) {
     const eventBus = new EventBus();
     this.domElement = null;
     this.eventBus = () => eventBus;
     this.props = this._makePropsProxy({ ...props, state: {} });
+    this.router = Router.instance;
+    this.api = Api;
 
     if (children !== undefined
             && children !== null
@@ -181,5 +187,13 @@ export default abstract class Component {
         return true;
       },
     });
+  }
+
+  show() {
+    this.getNode().style.display = "";
+  }
+
+  hide() {
+    this.getNode().style.display = "none";
   }
 }

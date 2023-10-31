@@ -1,5 +1,6 @@
 import template from './chats.hbs?raw';
 import Component from '../../../core/Component';
+import connect from "../../../core/Connect";
 
 class Chats extends Component {
   constructor() {
@@ -11,4 +12,10 @@ class Chats extends Component {
   }
 }
 
-export default Chats;
+const mapUserToProps = (state) => {
+  return {
+    name: state.user.name,
+  }
+}
+
+export default connect(mapUserToProps)(Chats);

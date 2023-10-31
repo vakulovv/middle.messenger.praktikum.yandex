@@ -19,6 +19,10 @@ export default class FormSignup extends Component {
       onBlur: (e: Record<string, any>) => {
         this.validateField(e);
       },
+      onLogin: () => {
+        this.onLogin.apply(this);
+      },
+
     });
 
     this.setProps(this.initial);
@@ -46,18 +50,31 @@ export default class FormSignup extends Component {
     });
   }
 
-  validateForm(form: HTMLFormElement) {
-    const formData = new FormData(form);
-    const formObject = Object.fromEntries(formData.entries());
+  validateForm(formObject) {
     const error = formValidate(formObject);
-
     this.setProps({ ...formObject, error });
+    return Object.keys(error).length === 0;
   }
 
   onSubmit(event: Record<string, any>) {
     event.preventDefault();
     const { target } = event;
-    this.validateForm(target);
+
+    const formData = new FormData(target);
+    const formObject = Object.fromEntries(formData.entries());
+
+    const isValid = this.validateForm(formObject);
+
+    if (!isValid) {
+      return;
+    }
+
+    this.api.user.signup(formObject);
+  }
+
+  onLogin() {
+    // console.log("this.router 1", this.router)
+    this.router.go("login");
   }
 
   componentDidUpdate(): boolean {
@@ -152,10 +169,10 @@ export default class FormSignup extends Component {
                         </div>
                         <div class="signup-form__buttons">
                             <div class="mb-1">
-                                {{{Button class="btn_full btn_md btn_ocean btn_corner" label="Зарегистрироваться" name="signup" }}}
+                                {{{Button class="btn_full btn_md btn_ocean btn_corner" label="Зарегистрироваться" name="signup"  }}}
                             </div>
                             <div>
-                                {{{Button class="btn_full btn_sm btn_subtle" label="Войти" name="login" }}}
+                                {{{Button class="btn_full btn_sm btn_subtle" label="Войти" name="login" type="button" onClick=onLogin }}}
                             </div>
                         </div>
                     </form>

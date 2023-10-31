@@ -1,11 +1,15 @@
 <div class="chats row row_between row_height">
     <div class="col-md-4 overflow-scroll chats__contacts ">
         <div class="text-right m-1">
-            <button type="button" class="btn btn_md btn_plain btn_light">
-                Профиль <svg width="6" height="10" viewBox="0 0 6 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M1 9L5 5L1 1" stroke="#999999"/>
-                        </svg>
-            </button>
+
+             {{{Button
+                 icon='<svg width="6" height="10" viewBox="0 0 6 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 9L5 5L1 1" stroke="#999999"/></svg>'
+                 onClick=onProfile
+                 class="btn btn_md btn_plain btn_light"
+                 label="Профиль"
+                 name="login"
+                 type="button" }}}
+
         </div>
         <div class="chats__search">
             {{{ Field label="поиск" class="text-input_search corner-small" }}}

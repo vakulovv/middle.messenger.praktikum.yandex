@@ -45,6 +45,10 @@ class HTTPTransport {
   request = (url: string, options: Record<string, any> = {}, timeout = 5000) => {
     const { method = '', headers = {}, data } = options;
 
+    if (!headers['Content-Type']) {
+      Object.assign(headers, { 'Content-Type': 'application/json'  });
+    }
+
     return new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest();
 
@@ -62,6 +66,8 @@ class HTTPTransport {
           xhr.setRequestHeader(header, headers[header]);
         });
       }
+
+      xhr.withCredentials = true;
 
       xhr.timeout = timeout;
 
@@ -84,3 +90,5 @@ class HTTPTransport {
     });
   };
 }
+
+export default HTTPTransport;

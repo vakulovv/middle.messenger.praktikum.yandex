@@ -4,8 +4,14 @@ import { ContactsItem } from './contactsItem/index';
 import { dataContacts as data } from './mocks';
 
 export default class Contacts extends Component {
-  constructor() {
-    super({ componentName: 'Contacts', contacts: data }, { ContactsItem });
+  constructor(props: Record<string, string | number>) {
+    super({
+      ...props,
+      componentName: 'Contacts',
+      contacts: data,
+    }, {
+      ContactsItem
+    });
   }
 
   render() {
