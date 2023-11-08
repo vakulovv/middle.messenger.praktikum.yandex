@@ -1,0 +1,26 @@
+.chats {
+
+
+
+  &__left {
+
+  }
+
+  &__contacts {
+    height: 100%;
+    background: #f8f8f8;
+    border-right: 2px #e3e3e3 solid;
+  }
+
+  &__search {
+    margin: 1em 10px;
+  }
+
+  &__title {
+    margin-bottom: 0.2em;
+  }
+
+  &__badge {
+    margin: 1em auto;
+  }
+}

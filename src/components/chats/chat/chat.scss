@@ -1,0 +1,40 @@
+.chat {
+  padding: 1em 1.5em;
+
+  &__header {
+    border-bottom: 1px #EAEAEA solid;
+    padding-bottom: 1em;
+  }
+
+  &__dialog {
+    padding: 2em 0;
+  }
+
+  &__footer {
+    border-top: 1px #EAEAEA solid;
+    padding: 1em 0;
+  }
+}
+.dialog {
+  &__receive {
+
+  }
+}
+
+.message {
+  padding: 0.8rem;
+  &_receive {
+    background: #F8F8F8;
+    border-radius: 0 6px 6px 6px;
+  }
+
+  &_sent {
+    background: #E4EDFD;
+    border-radius: 6px 6px 0 6px;
+  }
+
+  &__time {
+    color: #3369F3;
+    font-size: 0.8em;
+  }
+}

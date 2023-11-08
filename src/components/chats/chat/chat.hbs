@@ -1,0 +1,41 @@
+<div class="chat">
+    <div class="chat__header row row_nowrap row_gap  row_between">
+        <div class="row  row_gap  row_middle ">
+            <img src="/public/vite.svg" alt="" class="avatar avatar_small">
+            <h4 class="chats__title">{{ user }}</h4>
+        </div>
+        <button class="btn-icon" type="button" name="button">
+           <span class="arrow-icon arrow-icon_gray">
+               <svg width="3" height="16" viewBox="0 0 3 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+               <circle cx="1.5" cy="2" r="1.5" fill="#3369F3"/>
+               <circle cx="1.5" cy="8" r="1.5" fill="#3369F3"/>
+               <circle cx="1.5" cy="14" r="1.5" fill="#3369F3"/>
+               </svg>
+           </span>
+       </button>
+    </div>
+    <div class="dialog chat__dialog">
+        {{#each messages }}
+             <div class="row {{#if author }} dialog__sent row_end{{ else }} dialog__receive{{/if}}">
+                <div class="row">
+                    {{#if message }}
+                        <div class="{{#if author }}message message_sent{{ else }}message message_receive {{/if}}">
+                            {{ message }}
+                            {{#if status }}
+                                <svg width="11" height="5" viewBox="0 0 11 5" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <line y1="-0.5" x2="3.765" y2="-0.5" transform="matrix(0.705933 0.708278 -0.705933 0.708278 0.700195 2.33301)" stroke="#3369F3"/>
+                                <line y1="-0.5" x2="5.6475" y2="-0.5" transform="matrix(0.705933 -0.708278 0.705933 0.708278 3.35828 5)" stroke="#3369F3"/>
+                                <line y1="-0.5" x2="5.6475" y2="-0.5" transform="matrix(0.705933 -0.708278 0.705933 0.708278 6.01587 5)" stroke="#3369F3"/>
+                                </svg>
+                            {{/if }}
+                            <span class="message__time">{{ time }}</span>
+                        </div>
+                    {{/if}}
+                </div>
+            </div>
+        {{/each}}
+    </div>
+    <div class="chat__footer">
+        {{{ FormMessage }}}
+    </div>
+</div>

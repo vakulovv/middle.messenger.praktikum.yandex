@@ -1,0 +1,53 @@
+{{#> layout }}
+<div class="container main__full main__vcenter">
+    <div class="row row_center">
+        <div class="col-md-3">
+            <div class="card shadow corner p-4">
+                <h1 class="header text-center">Регистрация</h1>
+                <form action="#" name="auth" class="signup-form">
+                    <div class="mb-1">
+                        <label for="email" class="label label_toggle">Почта </label>
+                        <input id="email" name="email" placeholder="Почта" class="text-input text-input_flat text-input_flat_ocean" value=""/>
+                    </div>
+                    <div class="mb-1">
+                        <label for="login" class="label label_toggle">Логин </label>
+                        <input id="login" name="login" placeholder="Логин" class="text-input text-input_flat text-input_flat_ocean" value=""/>
+                    </div>
+                    <div class="mb-1">
+                        <label for="first_name" class="label label_toggle">Имя </label>
+                        <input id="first_name" name="first_name" placeholder="Имя" class="text-input text-input_flat text-input_flat_ocean" value=""/>
+                    </div>
+                    <div class="mb-1">
+                        <label for="second_name" class="label label_toggle">Фамилия </label>
+                        <input id="second_name" name="second_name" placeholder="Фамилия" class="text-input text-input_flat text-input_flat_ocean" value=""/>
+                    </div>
+                    <div class="mb-1">
+                        <label for="phone" class="label label_toggle">Телефон </label>
+                        <input id="phone" name="phone" placeholder="+7 (XX) XXX-XX-XX" class="text-input text-input_flat text-input_flat_ocean" value=""/>
+                    </div>
+                    <div class="mb-1">
+                        <label for="password" class="label label_toggle"> Пароль </label>
+                        <input id="password" name="password" placeholder="Пароль" class="text-input text-input_flat text-input_flat_ocean" value="" />
+                    </div>
+                    <div>
+                        <label for="checkPassword" class="label label_toggle">Пароль (ещё раз) </label>
+                        <input id="checkPassword" name="checkPassword" placeholder="Пароль (ещё раз)" class="text-input text-input_flat text-input_flat_ocean" value="" />
+                    </div>
+                    <div class="signup-form__buttons">
+                        <div class="mb-1">
+                            <button type="submit" class="btn btn_full btn_md btn_ocean btn_corner">
+                                Войти
+                            </button>
+                        </div>
+                        <div>
+                            <button type="button" class="btn btn_full btn_sm btn_subtle">
+                                Нет аккаунта?
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{{/layout}}
