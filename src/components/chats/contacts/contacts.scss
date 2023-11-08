@@ -3,7 +3,11 @@
   padding: 0;
 
   &__item {
-    padding: 1em 0;
-    border-bottom: 1px solid #d0d0d0
+    padding: 1em 1em;
+    border-bottom: 1px solid #d0d0d0;
+    cursor: pointer;
+    &_active {
+      background: #e3e3e3 ;
+    }
   }
 }

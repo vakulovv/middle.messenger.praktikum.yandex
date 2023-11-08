@@ -22,7 +22,9 @@ class Route {
 
     leave() {
         if (this._block) {
-            this._block.hide();
+            this._block.unmountComponent();
+            this._block.getNode().remove()
+            this._block = null;
         }
     }
 
@@ -31,13 +33,14 @@ class Route {
     }
 
     render(props) {
+        console.log("this._block", this._block)
         if (!this._block) {
             this._block = new this._blockClass(props);
             render(this._props.rootQuery, this._block);
             return;
         }
 
-        this._block.show();
+        render(this._props.rootQuery, this._block);
     }
 }
 
@@ -48,11 +51,13 @@ export default class Router {
         }
 
         this.routes = [];
+        this._redirect = {};
         this.history = window.history;
         this._currentRoute = null;
         this._rootQuery = rootQuery;
 
         this._errorRoute = null;
+        this._currentRoute = null;
 
         Router.__instance = this;
     }
@@ -74,8 +79,15 @@ export default class Router {
         return this;
     }
 
+    redirect(pathname, to) {
+        this._redirect[pathname]  = to;
+        return this;
+    }
+
     start() {
         window.onpopstate = (event) => {
+            console.log('onpopstate')
+            console.log("this._block 2", this._block)
             this._onRoute(event.currentTarget.location.pathname.slice(1));
         }
 
@@ -83,9 +95,17 @@ export default class Router {
     }
 
     _onRoute(pathname) {
+        console.log("this._block 2", pathname)
         let route = this.getRoute(pathname);
 
         const props = {};
+
+        if (this._redirect[pathname]) {
+            this.go(this._redirect[pathname]);
+            return;
+        }
+
+        console.log("this._block 2 route", route)
 
         if (!route) {
             route = this._errorRoute;
@@ -108,11 +128,13 @@ export default class Router {
     }
 
     go(pathname) {
-        if (!pathname) {
+        if (pathname === undefined) {
             return;
         }
         this.history.pushState({}, "", pathname);
         console.log("pathname", pathname)
+        console.log("this._block 4", pathname)
+
         this._onRoute(pathname);
     }
 
@@ -130,4 +152,8 @@ export default class Router {
         // console.log("pathname", pathname)
         return this.routes.find(route => route.match(pathname));
     }
+
+
+
+
 }

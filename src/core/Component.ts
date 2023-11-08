@@ -16,7 +16,7 @@ enum Events {
 export default abstract class Component {
   protected events: IEvents = {};
 
-  protected domElement:Element | null;
+  public domElement:Element | null;
 
   protected children: Array<Record<string, any>> = [];
 
@@ -25,14 +25,20 @@ export default abstract class Component {
   protected props: IProps;
   private router: any;
   protected api: Api;
+  private html: string;
 
   constructor(props: IProps, children?: Record<string, any>) {
     const eventBus = new EventBus();
     this.domElement = null;
     this.eventBus = () => eventBus;
-    this.props = this._makePropsProxy({ ...props, state: {} });
+    this.props = this._makePropsProxy({ ...props, state: {...props.state} });
+
+    console.log("props0", props)
     this.router = Router.instance;
     this.api = Api;
+
+    this.html = null;
+    this.childrenComponent = null;
 
     if (children !== undefined
             && children !== null
@@ -61,13 +67,23 @@ export default abstract class Component {
   }
 
   _componentDidMount() {
+    this.componentDidMount()
+    return true;
+  }
+
+  componentDidMount() {
     return true;
   }
 
   _componentDidUpdate() {
+
     const response = this.componentDidUpdate();
     if (response) {
       this.eventBus().emit(Events.FLOW_RENDER);
+    }
+
+    if (this.children) {
+      // this.children.forEach(({ component }) => component._componentDidUpdate());
     }
   }
 

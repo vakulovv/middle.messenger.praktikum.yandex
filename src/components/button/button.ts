@@ -15,7 +15,7 @@ export default class Button extends Component {
 
   render() {
     return (`
-            <button type="{{type}}" name="{{name}}" class="btn {{class}}"> {{ label }} {{{icon}}}</button>
+            <button type="{{type}}" name="{{name}}" class="btn {{class}}" data-id="{{data-id}}"> {{ label }} {{{icon}}}</button>
         `);
   }
 }

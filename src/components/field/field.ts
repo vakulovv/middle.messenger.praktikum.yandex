@@ -15,7 +15,7 @@ export default class Field extends Component {
                 {{#if toggle }}
                     <label for="{{ name }}" class="label label_toggle">{{ label }}</label>
                 {{/if}}
-                {{{ Input name=name label=label class=class onBlur=onBlur value=value type=type}}}
+                {{{ Input name=name label=label class=class onBlur=onBlur onInput=onInput value=value type=type}}}
                 {{#if error}} <span class="text-small text-error">{{error}}</span> {{/if}}
             </div>
         `);

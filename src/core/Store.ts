@@ -11,7 +11,11 @@ class Store extends EventBus {
 
     constructor() {
         super();
-        this.state = {};
+        this.state = {
+            auth: false,
+            user: null,
+            chats: [],
+        };
     }
 
     public getState() {
@@ -22,7 +26,7 @@ class Store extends EventBus {
         set(this.state, path, value);
 
         // метод EventBus
-        this.emit(StoreEvents.Updated);
+        this.emit(StoreEvents.Updated, path);
     };
 }
 

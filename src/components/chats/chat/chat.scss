@@ -1,5 +1,9 @@
 .chat {
   padding: 1em 1.5em;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+
 
   &__header {
     border-bottom: 1px #EAEAEA solid;
@@ -7,7 +11,10 @@
   }
 
   &__dialog {
-    padding: 2em 0;
+    padding: 2em 0.5em;
+    flex-grow: 1;
+    overflow-y: scroll;
+    align-items: center ;
   }
 
   &__footer {

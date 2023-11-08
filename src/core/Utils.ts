@@ -84,5 +84,18 @@ function set(object: Indexed | unknown, path: string, value: unknown): Indexed |
 
 }
 
-export {isEqual, set};
+function debounce(func, timeout = 300){
+    let timer;
+    return (...args) => {
+        clearTimeout(timer);
+        timer = setTimeout(() => { func.apply(this, args); }, timeout);
+    };
+}
+
+function formatTime(time) {
+    return new Date(time).toLocaleString()
+
+}
+
+export {isEqual, set, isArray, debounce, formatTime};
 

@@ -20,6 +20,7 @@ export default class Input extends Component {
 
     this.events = {
       blur: props.onBlur,
+      input: props.onInput,
     };
     return true;
   }
