@@ -21,11 +21,6 @@ Handlebars.registerPartial('layoutProfile', layoutProfile);
 
 Object.entries(Components).forEach((component) => register(component));
 
-// const Login = new LoginPage();
-
-// const urlParams = new URLSearchParams(window.location.search);
-// const page: string | null = urlParams.get('page');
-
 const userController = new UserController();
 
 const root = document.querySelector('#root');
