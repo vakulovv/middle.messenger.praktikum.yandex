@@ -1,15 +1,14 @@
 const express = require('express');
+const path = require('path');
 
 const app = express();
 const PORT = 3000;
 
 app.use(express.static('./dist'));
-
-app.get('/', (req, res) => {
-  res.render('index');
+app.use('/*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dist/index.html'));
 });
 
 app.listen(PORT, () => {
-  /* eslint no-console: 0 */
-  console.log(`Running on port ${PORT}!`);
+  console.log(`Example app listening on port ${PORT}!`);
 });
