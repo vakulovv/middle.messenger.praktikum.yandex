@@ -1,6 +1,6 @@
 import Component from '../../../../core/Component';
 import formValidate from '../../../../core/Validate';
-import ChatsController from "../../../../controller/ChatsController";
+import ChatsController from '../../../../controller/ChatsController';
 
 export default class FormMessage extends Component {
   protected initial = {
@@ -47,14 +47,11 @@ export default class FormMessage extends Component {
     this.setProps({ ...formObject, error });
   }
 
-  onSubmit(event: Record<string, any>) {
+  onSubmit(event: SubmitEvent) {
     event.preventDefault();
-    const { target } = event;
-    // this.validateForm(target);
+    const target = event.target as HTMLFormElement;
     const formData = new FormData(target);
-    const formObject = Object.fromEntries(formData.entries());
-
-    console.log("formObject",formObject)
+    const formObject: Record<string, any> = Object.fromEntries(formData.entries());
 
     ChatsController.appendMessages(formObject.message);
   }

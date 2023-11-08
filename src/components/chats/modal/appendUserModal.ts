@@ -1,74 +1,64 @@
-import Component from "../../../core/Component";
-import ChatsController from "../../../controller/ChatsController";
-import UserController from "../../../controller/UserController";
-import connect from "../../../core/Connect";
-import {debounce} from "../../../core/Utils";
+import Component from '../../../core/Component';
+import ChatsController from '../../../controller/ChatsController';
+import UserController from '../../../controller/UserController';
+import { debounce } from '../../../core/Utils';
+
 const userController = new UserController();
 
 class AppendUserModal extends Component {
-    protected initial = {
-        message: '',
-        error: {},
+  protected initial = {
+    message: '',
+    error: {},
 
+  };
+
+  constructor(props: Record<string, any>) {
+    super({
+      componentName: 'appendUserModal',
+      onInput: debounce((e: Event) => {
+        const target = e.target as HTMLInputElement;
+        this.findUser(target);
+      }),
+      ...props,
+    });
+
+    this.setProps(this.initial);
+  }
+
+  init(): boolean {
+    this.events = {
+      submit: this.onSubmit.bind(this),
+      click: (e) => e.stopPropagation(),
     };
 
+    return true;
+  }
 
-    constructor(props) {
-        super({
-            componentName: 'appendUserModal',
-            onBlur: (e: Record<string, any>) => {
-                // this.validateField(e);
-            },
-            onInput: debounce((e: Record<string, any>) => {
-                console.log("onInput", e.target);
-                this.findUser(e.target);
-                // this.setProps({value: e.target.value});
-            }),
-            ...props
-        });
+  findUser(target: HTMLInputElement) {
+    userController.search(target.value);
+  }
 
-        this.setProps(this.initial);
-    }
+  onSubmit(event: Event) {
+    event.preventDefault();
+    const target = event.target as HTMLFormElement;
+    const formData = new FormData(target);
+    const formObject = Object.fromEntries(formData.entries());
+    ChatsController.createChat(formObject);
+  }
 
-    init(): boolean {
-        this.events = {
-            submit: this.onSubmit.bind(this),
-            click: (e) => e.stopPropagation(),
-        };
+  componentDidUpdate(): boolean {
+    const { state } = this.props;
+    /* eslint no-console: 0 */
+    console.log('state', JSON.stringify(state));
 
-        return true;
-    }
+    return true;
+  }
 
+  render() {
+    const { props } = this;
+    const { error } = props.state;
 
-    findUser(target) {
-        userController.search(target.value)
-    }
-
-
-
-    onSubmit(event: Record<string, any>) {
-        event.preventDefault();
-        const { target } = event;
-        const formData = new FormData(target);
-        const formObject = Object.fromEntries(formData.entries());
-        console.log("state_5", target, formObject)
-        ChatsController.createChat(formObject)
-    }
-
-    componentDidUpdate(): boolean {
-        const { state } = this.props;
-        /* eslint no-console: 0 */
-        // console.log("state.getState111", JSON.stringify(this.props));
-
-        return true;
-    }
-
-    render() {
-        const { props } = this;
-        const { error, users = [], value } = props.state;
-
-
-        return (`
+    return (`
                 <div class="modal-content">
                     <h2>Введите имя пользователя</h2> 
                     <form action="#" name="comment" class="row row_nowrap row_gap-sm" style="width: 100%">
@@ -79,7 +69,6 @@ class AppendUserModal extends Component {
                             class=""
                             value=""
                             error="${error?.message || ''}"
-                            
                             onInput=onInput
                             }}}
                         </div>
@@ -87,9 +76,7 @@ class AppendUserModal extends Component {
                    {{{ AppendUserModalList activeChatId=activeChatId }}} 
                 </div>
                     `);
-    }
+  }
 }
 
-
-
-export default  AppendUserModal;
+export default AppendUserModal;

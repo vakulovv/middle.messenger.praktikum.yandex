@@ -1,11 +1,13 @@
 import Component from '../../core/Component';
 
 export default class Field extends Component {
-  constructor(props: Array<Record<string, any>>) {
-    super({ componentName: 'Field',
-      ...{...props,
-        type: props.type || "text",
-      }
+  constructor(props: Record<string, any>) {
+    super({
+      componentName: 'Field',
+      ...{
+        ...props,
+        type: props.type || 'text',
+      },
     });
   }
 

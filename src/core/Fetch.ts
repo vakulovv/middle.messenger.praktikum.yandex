@@ -43,11 +43,9 @@ class HTTPTransport {
 
   /* eslint class-methods-use-this: 0 */
   request = (url: string, options: Record<string, any> = {}, timeout = 5000) => {
-    const { method = '', headers = {}, data, withCredentials } = options;
-
-    if (!headers['Content-Type'] ) {
-      // Object.assign(headers, { 'Content-Type': 'application/json'  });
-    }
+    const {
+      method = '', headers = {}, data, withCredentials,
+    } = options;
 
     return new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest();
@@ -67,9 +65,7 @@ class HTTPTransport {
         });
       }
 
-
       if (withCredentials) {
-        console.log("withCredentials", withCredentials)
         xhr.withCredentials = true;
       }
 
@@ -86,8 +82,6 @@ class HTTPTransport {
         reject(new Error());
       };
 
-      console.log("data_1", data)
-
       if (method === METHODS.GET || !data) {
         xhr.send();
       } else if (headers['Content-Type'] === 'application/json') {
@@ -95,7 +89,6 @@ class HTTPTransport {
       } else {
         xhr.send(data);
       }
-
     });
   };
 }

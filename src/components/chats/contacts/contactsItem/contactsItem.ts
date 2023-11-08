@@ -13,16 +13,14 @@ export default class ContactsItem extends Component {
   }
 
   init() {
-    const {props} = this;
-    console.log("props12", JSON.stringify(props))
+    const { props } = this;
     this.events = {
-      click: (e) => {
-        props.onClick(props.id)
+      click: () => {
+        props.onClick(props.id);
       },
     };
     return true;
   }
-
 
   render() {
     return `

@@ -3,18 +3,12 @@ import template from './chats.hbs?raw';
 import { Contacts } from './contacts/index';
 import { Chat } from './chat/index';
 import { dataContacts } from './contacts/mocks';
-import ChatsController from "../../controller/ChatsController";
-import {Modal} from "../modal";
-import store from "../../core/Store.ts"
-import connect from "../../core/Connect";
+import ChatsController from '../../controller/ChatsController';
+import store from '../../core/Store.ts';
 
 const active = dataContacts.find((i) => i.user === 'Mario');
 
 class Chats extends Component {
-  private createChatModal: boolean;
-
-  private activeChatId: number | null;
-
   protected initial = {
     createChatModal: false,
     appendUserModal: false,
@@ -24,11 +18,11 @@ class Chats extends Component {
     token: null,
   };
 
-  constructor() {
+  constructor(props: Record<string, string | number>) {
     super({
       componentName: 'Chats',
       user: active?.user,
-      void: "test",
+      void: 'test',
       onProfile: () => {
         this.onProfile.apply(this);
       },
@@ -39,69 +33,62 @@ class Chats extends Component {
         this.toggleAppendUserModal.apply(this);
       },
       toggleRemoveUserModal: () => {
-        console.log("modal_test")
         this.toggleRemoveUserModal.apply(this);
       },
       toggleChatsMenu: () => {
         this.toggleChatsMenu.apply(this);
       },
-      setActive: (id) => {
+      setActive: (id: string) => {
         store.set('activeChatId', id);
 
-        setTimeout(()=> {
+        setTimeout(() => {
           this.setActiveChat(id);
-        }, 0)
-      }
+        }, 0);
+      },
+      ...props,
 
     }, { Contacts, Chat });
 
-    this.activeChatId = null;
-
     this.setProps(this.initial);
-
-    console.log("state.getStateconstructor", store.getState())
-
   }
 
-  async setActiveChat(id) {
-      const token = await ChatsController.getToken(id);
-      ChatsController.toChat(id, token);
+  async setActiveChat(id: string) {
+    const token = await ChatsController.getToken(id);
+    ChatsController.toChat(id, token);
   }
-
 
   componentDidUpdate(): boolean {
-    console.log("messages_177")
     return true;
   }
 
-  toggleRemoveUserModal(e) {
-    console.log("check_0", "toggleRemoveUserModal")
-    this.setProps({"removeUserModal": !this.props.state.removeUserModal, chatsMenu: false})
+  toggleRemoveUserModal() {
+    const { state: { removeUserModal } } = this.props;
+    this.setProps({ removeUserModal: !removeUserModal, chatsMenu: false });
   }
 
-  toggleAppendUserModal(e) {
-    this.setProps({"appendUserModal": !this.props.state.appendUserModal, chatsMenu: false})
+  toggleAppendUserModal() {
+    const { state: { appendUserModal } } = this.props;
+    this.setProps({ appendUserModal: !appendUserModal, chatsMenu: false });
   }
 
   toggleCreateChatModal() {
-    this.setProps({"createChatModal": !this.props.state.createChatModal, chatsMenu: false})
+    const { state: { createChatModal } } = this.props;
+    this.setProps({ createChatModal: !createChatModal, chatsMenu: false });
   }
 
   toggleChatsMenu() {
-    this.setProps({"chatsMenu": !this.props.state.chatsMenu})
+    const { state: { chatsMenu } } = this.props;
+    this.setProps({ chatsMenu: !chatsMenu });
   }
 
   onProfile() {
     // console.log("this.router 1", this.router)
-    this.router.go("profile");
+    this.router.go('profile');
   }
 
   render() {
-
     return template;
   }
 }
 
-
-
-export default Chats
+export default Chats;

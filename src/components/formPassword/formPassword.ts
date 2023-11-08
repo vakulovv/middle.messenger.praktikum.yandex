@@ -1,7 +1,8 @@
 import Component from '../../core/Component';
 import formValidate from '../../core/Validate';
-import UserController from "../../controller/UserController";
-import connect from "../../core/Connect";
+import UserController from '../../controller/UserController';
+import connect from '../../core/Connect';
+import { Indexed } from '../../types/types';
 
 const userController = new UserController();
 
@@ -51,13 +52,13 @@ class FormPassword extends Component {
     });
   }
 
-  validateForm(formObject) {
+  validateForm(formObject: object) {
     const error = formValidate(formObject);
     this.setProps({ ...formObject, error });
     return Object.keys(error).length === 0;
   }
 
-    onSubmit(event: Record<string, any>) {
+  onSubmit(event: Record<string, any>) {
     event.preventDefault();
     const { target } = event;
 
@@ -73,8 +74,6 @@ class FormPassword extends Component {
     userController.password(formObject);
   }
 
-
-
   componentDidUpdate(): boolean {
     const { state } = this.props;
     /* eslint no-console: 0 */
@@ -83,9 +82,6 @@ class FormPassword extends Component {
   }
 
   render() {
-    const { props } = this;
-    const { error } = props.state;
-
     return (`
                    <form action="#" name="password">
             <ul class="flat-list profile__bio">
@@ -130,11 +126,8 @@ class FormPassword extends Component {
   }
 }
 
-
-const mapUserToProps = (state) => {
-  return {
-    "user": state.user
-  }
-}
+const mapUserToProps = (state: Indexed) => ({
+  user: state.user,
+});
 
 export default connect(mapUserToProps)(FormPassword);

@@ -1,2 +1,3 @@
-import  "./menu.scss"
+import './menu.scss';
+
 export { default as Menu } from './menu.ts';

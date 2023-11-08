@@ -1,9 +1,8 @@
 import Component from '../../core/Component';
 import formValidate from '../../core/Validate';
-import UserController from "../../controller/UserController";
-import Router from "../../core/Router";
-import store from "../../core/Store";
-import connect from "../../core/Connect";
+import UserController from '../../controller/UserController';
+import connect from '../../core/Connect';
+import { Indexed } from '../../types/types';
 
 const userController = new UserController();
 
@@ -21,25 +20,24 @@ class FormProfile extends Component {
     changeAvatarModal: false,
   };
 
-  constructor(props) {
+  constructor(props: Record<string, any>) {
     super({
       componentName: 'FormProfile',
       onBlur: (e: Record<string, any>) => {
         this.validateField(e);
       },
       toggleChangeAvatarModal: () => {
-        this.toggleChangeAvatarModal.apply(this)
+        this.toggleChangeAvatarModal.apply(this);
       },
       ...props,
     });
 
-    console.log("props.state", props)
-
-    this.setProps({...this.initial, ...props.state.user});
+    this.setProps({ ...this.initial, ...props.state.user });
   }
 
   toggleChangeAvatarModal() {
-    this.setProps({changeAvatarModal: !this.props.state.changeAvatarModal})
+    const { state: { changeAvatarModal } } = this.props;
+    this.setProps({ changeAvatarModal: !changeAvatarModal });
   }
 
   init(): boolean {
@@ -65,18 +63,18 @@ class FormProfile extends Component {
     });
   }
 
-  validateForm(form: HTMLFormElement) {
+  validateForm(form: HTMLFormElement): boolean {
     const formData = new FormData(form);
     const formObject = Object.fromEntries(formData.entries());
     const error = formValidate(formObject);
 
     this.setProps({ ...formObject, error });
-
+    return true;
   }
 
   async onSubmit(event: Record<string, any>) {
     event.preventDefault();
-    event.stopPropagation()
+    event.stopPropagation();
     const { target } = event;
     const error = this.validateForm(target);
 
@@ -99,8 +97,8 @@ class FormProfile extends Component {
 
   render() {
     const { props } = this;
-    const { user = {}} = props.state;
-    const { error} = props.state;
+    const { user = {} } = props.state;
+    const { error } = props.state;
 
     return (`
 
@@ -108,7 +106,7 @@ class FormProfile extends Component {
                         <div class="profile__avatar row row_center">
                             <div class="text-center">
                                 <div class="avatar">
-                                    {{{Button type="button " class=" btn_subtle" icon="<img class='avatar' src='${user?.avatar ? 'https://ya-praktikum.tech/api/v2/resources' + user.avatar : '/public/vite.svg' }' >" onClick=toggleChangeAvatarModal }}}
+                                    {{{Button type="button " class=" btn_subtle" icon="<img class='avatar' src='${user?.avatar ? `https://ya-praktikum.tech/api/v2/resources${user.avatar}` : '/public/vite.svg'}' >" onClick=toggleChangeAvatarModal }}}
                                 </div>
                                 <h2>{{{state.user.first_name}}}</h2>
                             </div>
@@ -193,12 +191,8 @@ class FormProfile extends Component {
   }
 }
 
-
-const mapUserToProps = (state) => {
-  return {
-    "user": state.user
-  }
-}
+const mapUserToProps = (state: Indexed) => ({
+  user: state.user,
+});
 
 export default connect(mapUserToProps)(FormProfile);
-

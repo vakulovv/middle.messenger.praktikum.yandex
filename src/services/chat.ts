@@ -1,44 +1,46 @@
-import HTTPTransport from "../core/Fetch";
-import {API_URL, SOCKET_URL} from './constant';
+import HTTPTransport from '../core/Fetch';
+import { API_URL, SOCKET_URL } from './constant';
 
 export default class ApiChat {
-    constructor() {
-        this.baseUrl = API_URL;
-        this.socketUrl = API_URL;
-        this.fetch = new HTTPTransport;
-        this.headers = {
-            'Content-Type': 'application/json',
-        };
-        this.token = null;
-    }
+  private baseUrl: string;
 
-    getToken(id) {
-        return this.fetch.post(this.baseUrl + '/api/v2/chats/token/' + id, { headers: this.headers, withCredentials: true  });
-    }
+  private fetch: HTTPTransport;
 
-    getUsers(id) {
-        return this.fetch.get(this.baseUrl + '/api/v2/chats/' + id + '/users', { headers: this.headers, withCredentials: true  });
-    }
+  private headers: Record<string, any>;
 
-    chats() {
-        return this.fetch.get(this.baseUrl + '/api/v2/chats', { headers: this.headers, withCredentials: true  });
-    }
+  constructor() {
+    this.baseUrl = API_URL;
+    this.fetch = new HTTPTransport();
+    this.headers = {
+      'Content-Type': 'application/json',
+    };
+  }
 
-    create(data) {
-        return this.fetch.post(this.baseUrl + '/api/v2/chats', { headers: this.headers, data, withCredentials: true });
-    }
+  getToken(id: string) {
+    return this.fetch.post(`${this.baseUrl}/api/v2/chats/token/${id}`, { headers: this.headers, withCredentials: true });
+  }
 
-    getChat(userId, chatId, token) {
-        return new WebSocket(SOCKET_URL + `${userId}/${chatId}/${token}`);
-    }
+  getUsers(id: string) {
+    return this.fetch.get(`${this.baseUrl}/api/v2/chats/${id}/users`, { headers: this.headers, withCredentials: true });
+  }
 
-    appendUser(users, chatId) {
-        return this.fetch.put(this.baseUrl + '/api/v2/chats/users', { headers: this.headers, data: {users, chatId}, withCredentials: true })
-    }
+  chats() {
+    return this.fetch.get(`${this.baseUrl}/api/v2/chats`, { headers: this.headers, withCredentials: true });
+  }
 
-    removeUser(users, chatId) {
-        return this.fetch.delete(this.baseUrl + '/api/v2/chats/users', { headers: this.headers, data: {users, chatId}, withCredentials: true })
-    }
+  create(data: Record<string, any>) {
+    return this.fetch.post(`${this.baseUrl}/api/v2/chats`, { headers: this.headers, data, withCredentials: true });
+  }
 
+  getChat(userId: string, chatId: string, token: string) {
+    return new WebSocket(`${SOCKET_URL}${userId}/${chatId}/${token}`);
+  }
 
+  appendUser(users: [string], chatId: string) {
+    return this.fetch.put(`${this.baseUrl}/api/v2/chats/users`, { headers: this.headers, data: { users, chatId }, withCredentials: true });
+  }
+
+  removeUser(users: [string], chatId: string) {
+    return this.fetch.delete(`${this.baseUrl}/api/v2/chats/users`, { headers: this.headers, data: { users, chatId }, withCredentials: true });
+  }
 }

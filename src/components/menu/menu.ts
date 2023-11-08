@@ -7,67 +7,44 @@ export default class Menu extends Component {
 
   init(): boolean {
     const { props } = this;
-    console.log("props_menu", props)
 
     this.events = {
-      // focusout: () => props.toggle(),
-      // mouseout: () => {
-      //   console.log("test_05")
-      //   props.toggle()
-      // },
-      focusout: (event) => {
-        console.log("focusout")
-
-        if (this.getNode().contains(event.relatedTarget)) {
-          console.log("check_0")
-          // don't react to this
-
+      focusout: (event: FocusEvent) => {
+        const target = event.relatedTarget as Node;
+        if (this.getNode().contains(target)) {
           return true;
         }
-        // //
-        props.toggle()
+        props.toggle();
         return true;
-
-
       },
-      focus: () => {
-        console.log("domElement focus", )
-      },
-
     };
 
-    this.toggle()
-
-
+    this.toggle();
 
     return true;
   }
 
-
-
   toggle() {
-    if (this.props.open) {
-      this.show()
+    const { props: { open } } = this;
+    if (open) {
+      this.show();
       setTimeout(() => {
-        this.getNode().focus()
-      }, 0)
+        const html = this.getNode() as HTMLElement;
+        html.focus();
+      }, 0);
     } else {
-      this.hide()
+      this.hide();
     }
   }
 
   componentDidUpdate(): boolean {
-    console.log("focus1")
-    return true
+    return true;
   }
 
-
   render() {
-
     return (`
         <!-- Modal -->
         <div class="menu" tabindex="-1" id="menuChats" >
-        
         </div>
       `);
   }

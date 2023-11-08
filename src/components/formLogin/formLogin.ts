@@ -1,11 +1,8 @@
 import Component from '../../core/Component';
 import formValidate from '../../core/Validate';
-import Router from "../../core/Router"
-import ApiUser from "../../services/user";
-import store from '../../core/Store.ts';
-import UserController from "../../controller/UserController.ts";
+import UserController from '../../controller/UserController.ts';
 
-const userController  = new UserController();
+const userController = new UserController();
 
 export default class FormLogin extends Component {
   protected initial = {
@@ -14,7 +11,7 @@ export default class FormLogin extends Component {
     error: {},
   };
 
-  constructor() {
+  constructor(props: Record<string, string | number>) {
     super({
       onBlur: (e: Record<string, any>) => {
         this.validateField(e);
@@ -22,10 +19,11 @@ export default class FormLogin extends Component {
       onSignup: () => {
         this.onSignup.apply(this);
       },
+      ...props,
     });
 
     this.setProps(this.initial);
-    console.log("router", this.router)
+    console.log('router', this.router);
   }
 
   init():boolean {
@@ -50,7 +48,7 @@ export default class FormLogin extends Component {
     });
   }
 
-  validateForm(formObject) {
+  validateForm(formObject: object) {
     const error = formValidate(formObject);
     this.setProps({ ...formObject, error });
     return Object.keys(error).length === 0;
@@ -74,7 +72,7 @@ export default class FormLogin extends Component {
 
   onSignup() {
     // console.log("this.router 1", this.router)
-    this.router.go("sign-up");
+    this.router.go('sign-up');
   }
 
   componentDidUpdate(): boolean {

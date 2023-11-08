@@ -11,23 +11,21 @@ export default class Modal extends Component {
       click: () => props.toggle(),
     };
 
-    this.toggle()
+    this.toggle();
 
     return true;
   }
 
   toggle() {
-    if (this.props.open) {
-      this.show()
-
+    const { open } = this.props;
+    if (open) {
+      this.show();
     } else {
-      this.hide()
+      this.hide();
     }
   }
 
   componentDidUpdate(): boolean {
-    console.log("state_5", this)
-    // this.toggle()
     return false;
   }
 

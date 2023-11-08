@@ -1,5 +1,5 @@
-import ApiUser from "./user.ts";
+import ApiUser from './user.ts';
 
 export default {
-    user: new ApiUser,
+  user: new ApiUser(),
 };

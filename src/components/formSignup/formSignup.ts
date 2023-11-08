@@ -1,8 +1,10 @@
 import Component from '../../core/Component';
 import formValidate from '../../core/Validate';
+import UserController from '../../controller/UserController';
+
+const userController = new UserController();
 
 export default class FormSignup extends Component {
-  // static readonly componentName = "FormSignup";
   protected initial = {
     email: '',
     login: '',
@@ -50,7 +52,7 @@ export default class FormSignup extends Component {
     });
   }
 
-  validateForm(formObject) {
+  validateForm(formObject: object) {
     const error = formValidate(formObject);
     this.setProps({ ...formObject, error });
     return Object.keys(error).length === 0;
@@ -66,15 +68,12 @@ export default class FormSignup extends Component {
     const isValid = this.validateForm(formObject);
 
     if (!isValid) {
-      return;
+      userController.signUp(formObject);
     }
-
-    this.api.user.signup(formObject);
   }
 
   onLogin() {
-    // console.log("this.router 1", this.router)
-    this.router.go("login");
+    this.router.go('login');
   }
 
   componentDidUpdate(): boolean {
