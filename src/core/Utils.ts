@@ -76,10 +76,8 @@ function set(object: Indexed | unknown, path: string, value: unknown): Indexed |
 }
 
 function debounce(fn: (...args: Record<string, any>[]) => void, timeout: number = 300) {
-  // @ts-ignore
-  let timer;
+  let timer:ReturnType<typeof setTimeout>;
   return (...args: any[]) => {
-    // @ts-ignore
     clearTimeout(timer);
     timer = setTimeout(() => { fn.apply(this, args); }, timeout);
   };
