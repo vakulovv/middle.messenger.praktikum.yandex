@@ -18,7 +18,7 @@ class ChatsController {
         this.getChats();
       }
     }).catch((error) => {
-      throw new Error(`Failed auth${error}`);
+      console.log(`Failed auth${error}`);
     });
   }
 
@@ -29,7 +29,7 @@ class ChatsController {
       }
       return {};
     }).catch((error) => {
-      throw new Error(`Token get failed ${error}`);
+      console.log(`Token get failed ${error}`);
     });
   }
 
@@ -104,7 +104,7 @@ class ChatsController {
         this.getUsers(chatId);
       }
     }).catch((error) => {
-      throw new Error(`Failed append user to chat ${error}`);
+      console.log(`Failed append user to chat ${error}`);
     });
   }
 
@@ -115,7 +115,7 @@ class ChatsController {
         this.getUsers(chatId);
       }
     }).catch((error) => {
-      throw new Error(`Failed remove user from chat ${error}`);
+      console.log(`Failed remove user from chat ${error}`);
     });
   }
 
@@ -126,7 +126,7 @@ class ChatsController {
       }
       return true;
     }).catch((error) => {
-      throw new Error(`Failed get chats from user ${error}`);
+      console.log(`Failed get chats from user ${error}`);
     });
   }
 
@@ -137,7 +137,7 @@ class ChatsController {
       }
       return true;
     }).catch((error) => {
-      throw new Error(`Failed get users for chat ${error}`);
+      console.log(`Failed get users for chat ${error}`);
     });
   }
 }

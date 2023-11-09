@@ -22,7 +22,7 @@ class UserController {
       }
       return true;
     }).catch((error) => {
-      throw new Error(`Failed get data user ${error}`);
+      console.log(`Failed get data user ${error}`);
     });
   }
 
@@ -30,7 +30,7 @@ class UserController {
     this.api.logout().then(() => {
       logout();
     }).catch((error) => {
-      throw new Error(`Failed logout${error}`);
+      console.log(`Failed logout ${error}`);
     });
   }
 
@@ -38,7 +38,7 @@ class UserController {
     this.api.avatar(data).then(() => {
       this.getUser();
     }).catch((error) => {
-      throw new Error(`Failed get user avatar ${error}`);
+      console.log(`Failed get user avatar ${error}`);
     });
   }
 
@@ -47,7 +47,7 @@ class UserController {
       this.getUser();
       return true;
     }).catch((error) => {
-      throw new Error(`Failed update user profile ${error}`);
+      console.log(`Failed update user profile ${error}`);
     });
   }
 
@@ -56,7 +56,7 @@ class UserController {
       this.getUser();
       return true;
     }).catch((error) => {
-      throw new Error(`Failed update password ${error}`);
+      console.log(`Failed update password ${error}`);
     });
   }
 
@@ -66,7 +66,7 @@ class UserController {
         store.set('users', JSON.parse(data.response));
       }
     }).catch((error) => {
-      throw new Error(`Failed find user ${error}`);
+      console.log(`Failed find user ${error}`);
     });
   }
 
@@ -75,12 +75,16 @@ class UserController {
       if (data.status === 200) {
         store.set('auth', true);
         window.localStorage.setItem('auth', 'true');
-      } else {
-        /* eslint no-console:0 */
-        console.error('login error');
+      }
+      if (data.status === 400) {
+        const response = data && data.status ? JSON.parse(data.response) : null;
+        if (response.reason === 'User already in system') {
+          store.set('auth', true);
+          window.localStorage.setItem('auth', 'true');
+        }
       }
     }).catch((error) => {
-      throw new Error(`Failed auth user ${error}`);
+      console.log(`Failed auth user ${error}`);
     });
   }
 
@@ -94,7 +98,7 @@ class UserController {
         console.error('login error');
       }
     }).catch((error) => {
-      throw new Error(`Failed signup user ${error}`);
+      console.error(`login error ${error}`);
     });
   }
 }
