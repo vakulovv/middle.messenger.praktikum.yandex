@@ -76,12 +76,12 @@ class FormProfile extends Component {
     event.preventDefault();
     event.stopPropagation();
     const { target } = event;
-    const error = this.validateForm(target);
+    const validate = this.validateForm(target);
 
     const formData = new FormData(target);
     const formObject = Object.fromEntries(formData.entries());
 
-    if (!error) {
+    if (validate) {
       await userController.profile(formObject);
     }
 
