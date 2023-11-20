@@ -29,11 +29,7 @@ describe('Fetch', () => {
 
   it('should get method', async () => {
     const data = { hello: 'world' };
-
-    // myapi.post(data, function() { });
-
     const headers = { 'Content-Type': 'application/json' };
-
     await http.post('https://ya-praktikum.tech/api/v2/test', { data, headers, timeout });
 
     expect(request.args[0]).to.be.deep.equal([
@@ -42,41 +38,5 @@ describe('Fetch', () => {
         data, timeout, headers, method: 'POST',
       },
       timeout]);
-
-    //
-    // const requestStub = sinon.stub(http, 'request').resolves()
-    //
-    // await http.get(`https://ya-praktikum.tech/api/v2/test`)
-    //
-    // expect(
-    //     requestStub.calledWithMatch(
-    //         'https://ya-praktikum.tech/api/v2/test',
-    //         { method: 'GET' }
-    //     )
-    // ).to.be.true
   });
-
-  // it('should GET', async () => {
-  //     const response = await Fetch.get({server:serverUrl, path:'/1'});
-  //     const responseObject = JSON.parse(response.response);
-  //     expect(responseObject['id']).toBe(1);
-  // });
-  //
-  // it('POST запрос', async () => {
-  //     const response = await Fetch.post({server:serverUrl, data:data}) as XMLHttpRequest;
-  //     const responseObject = JSON.parse(response.response);
-  //     expect(responseObject['login']).toBe(data.login);
-  // });
-  //
-  // it('GET method', () => {
-  //     const http = new HTTPTransport('/user');
-  //
-  //     http.get('/getUser');
-  //
-  //     expect(open.callCount).to.eq(1);
-  //     expect(send.callCount).to.eq(1);
-  //
-  //     expect(open.firstArg).to.eq('GET');
-  //     expect(open.lastArg).to.eq('https://ya-praktikum.tech/api/v2/user/getUser');
-  // });
 });
