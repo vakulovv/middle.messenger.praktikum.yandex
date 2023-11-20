@@ -6,6 +6,10 @@ class Chats extends Component {
     super({ componentName: 'Chats' });
   }
 
+  componentDidMount() {
+    return true;
+  }
+
   render() {
     return template;
   }

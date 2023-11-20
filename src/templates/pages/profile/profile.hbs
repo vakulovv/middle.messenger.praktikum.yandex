@@ -1,4 +1,13 @@
     {{#> layoutProfile }}
+            <div class="profile__avatar row row_center">
+                <div class="text-center">
+                    <div class="avatar">
+                        {{#if state.avatar }} <img src="https://ya-praktikum.tech/api/v2/resources/{{ state.avatar }}" alt="" class="avatar"/>
+                        {{ else }}<img src="/public/vite.svg" alt="">{{/if}}
+                    </div>
+                    <h2>{{state.first_name}}</h2>
+                </div>
+            </div>
             <div>
                 <ul class="flat-list profile__bio">
                     <li class="flat-list__item">
@@ -6,7 +15,7 @@
                             <div>
                                 <span class="text-bold">Почта</span>
                             </div>
-                            <div class="text-muted">pochta@yandex.ru</div>
+                            <div class="text-muted">{{ state.email }}</div>
                         </div>
                     </li>
                     <li class="flat-list__item">
@@ -14,7 +23,7 @@
                             <div>
                                 <span class="text-bold">Логин</span>
                             </div>
-                            <div class="text-muted">ivanivanov</div>
+                            <div class="text-muted">{{ state.login }}</div>
                         </div>
                     </li>
                     <li class="flat-list__item">
@@ -22,7 +31,7 @@
                             <div>
                                 <span class="text-bold">Имя</span>
                             </div>
-                            <div class="text-muted">Иван</div>
+                            <div class="text-muted">{{ state.first_name }}</div>
                         </div>
                     </li>
                     <li class="flat-list__item">
@@ -30,7 +39,7 @@
                             <div>
                                 <span class="text-bold">Фамилия</span>
                             </div>
-                            <div class="text-muted">Иванов</div>
+                            <div class="text-muted">{{ state.second_name }}</div>
                         </div>
                     </li>
                     <li class="flat-list__item">
@@ -38,7 +47,7 @@
                             <div>
                                 <span class="text-bold">Имя в чате</span>
                             </div>
-                            <div class="text-muted">Иван</div>
+                            <div class="text-muted">{{ state.display_name }}</div>
                         </div>
                     </li>
                     <li class="flat-list__item">
@@ -46,7 +55,7 @@
                             <div>
                                 <span class="text-bold">Телефон</span>
                             </div>
-                            <div class="text-muted">+7 (909) 967 30 30</div>
+                            <div class="text-muted">{{ state.phone }}</div>
                         </div>
                     </li>
                 </ul>
@@ -54,23 +63,17 @@
                     <ul class="flat-list profile__buttons">
                         <li class="flat-list__item">
                             <div class="row row_between row_middle row_height">
-                                <button type="button" class="btn btn_md btn_plain">
-                                    Изменить данные
-                                </button>
+                               {{{Button class="btn btn_md btn_plain" label="Изменить данные" name="settings" type="button" onClick=onSettings }}}
                             </div>
                         </li>
                         <li class="flat-list__item">
                             <div class="row row_between row_middle row_height">
-                                <button type="button" class="btn btn_md btn_plain">
-                                    Изменить пароль
-                                </button>
+                                 {{{Button class="btn btn_md btn_plain" label="Изменить пароль" name="password" type="button" onClick=onChangePassword }}}
                             </div>
                         </li>
                         <li class="flat-list__item">
                             <div class="row row_between row_middle row_height">
-                                <button type="button" class="btn btn_md btn_plain btn_danger">
-                                    Выйти
-                                </button>
+                                {{{Button class="btn btn_md btn_plain btn_danger" label="Выйти" name="logout" type="button" onClick=onLogout }}}
                             </div>
                         </li>
                     </ul>

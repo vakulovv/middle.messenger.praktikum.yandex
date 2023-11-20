@@ -17,15 +17,17 @@ export default class Input extends Component {
 
   init() {
     const { props } = this;
+
     this.events = {
       blur: props.onBlur,
+      input: props.onInput,
     };
     return true;
   }
 
   render() {
     return (`
-            <input id="{{ name }}" type="text" name="{{ name }}" placeholder="{{ label }}" class="text-input {{ class }}" value="{{value}}" />
+            <input id="{{ name }}" type="{{ type }}" name="{{ name }}" placeholder="{{ label }}" class="text-input {{ class }}" value="{{value}}" />
         `);
   }
 }

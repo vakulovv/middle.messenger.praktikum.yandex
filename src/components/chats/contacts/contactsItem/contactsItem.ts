@@ -12,18 +12,28 @@ export default class ContactsItem extends Component {
     super({ name: 'ContactsItem', ...props });
   }
 
+  init() {
+    const { props } = this;
+    this.events = {
+      click: () => {
+        props.onClick(props.id);
+      },
+    };
+    return true;
+  }
+
   render() {
     return `
-            <div class="row row_gap row_nowrap">
+            <div class="row row_gap row_nowrap mb-1">
                 <div class="avatar avatar_small">
                     <img src="/public/vite.svg" alt="">
                 </div> 
                 <div class="row_center">
-                    <h4 class="chats__title">{{ user }}</h4>
-                    <div class="text-light text-small"> {{message}} </div>
+                    <h4 class="chats__title">{{ title }}</h4>
+                    <div class="text-light text-small"> {{last_message.user.first_name}} </div>
                 </div>
                 <div>
-                    <time class="text-light text-small">{{time}}</time>
+                    <time class="text-light text-small">{{created_by}}</time>
                     {{#if unread}}
                         <div class="chats__badge circle text-small">{{unread}}</div>
                     {{/if}}

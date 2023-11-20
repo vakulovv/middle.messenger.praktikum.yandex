@@ -2,8 +2,8 @@ import template from './profileEdit.hbs?raw';
 import Component from '../../../core/Component';
 
 class ProfileEdit extends Component {
-  constructor() {
-    super({ componentName: 'ProfileEdit' });
+  constructor(props: Record<string, string | number>) {
+    super({ componentName: 'ProfileEdit', ...props });
   }
 
   render() {

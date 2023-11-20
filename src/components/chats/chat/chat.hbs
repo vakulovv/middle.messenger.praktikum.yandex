@@ -4,24 +4,42 @@
             <img src="/public/vite.svg" alt="" class="avatar avatar_small">
             <h4 class="chats__title">{{ user }}</h4>
         </div>
-        <button class="btn-icon" type="button" name="button">
-           <span class="arrow-icon arrow-icon_gray">
-               <svg width="3" height="16" viewBox="0 0 3 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-               <circle cx="1.5" cy="2" r="1.5" fill="#3369F3"/>
-               <circle cx="1.5" cy="8" r="1.5" fill="#3369F3"/>
-               <circle cx="1.5" cy="14" r="1.5" fill="#3369F3"/>
-               </svg>
-           </span>
-       </button>
+
+        <div class="menu-wrapper">
+
+         {{{Button
+                 onClick=toggleChatsMenu
+                 class="btn-icon" type="button" name="button"
+                 type="button"
+                 icon='<span class="arrow-icon arrow-icon_gray">
+                          <svg width="3" height="16" viewBox="0 0 3 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <circle cx="1.5" cy="2" r="1.5" fill="#3369F3"/>
+                          <circle cx="1.5" cy="8" r="1.5" fill="#3369F3"/>
+                          <circle cx="1.5" cy="14" r="1.5" fill="#3369F3"/>
+                          </svg>
+                      </span>'
+                 }}}
+
+                {{#Menu open=chatsMenu toggle=toggleChatsMenu toggleAppendUserModal=toggleAppendUserModal user=user}}
+                    <ul class="menu-chat" >
+                    {{ user }}
+                        <li>{{{Button onClick=toggleAppendUserModal class="btn btn btn_md btn_plain" type="button" name="addUser" label="Добавить пользователя"  }}}</li>
+                        <li>{{{Button onClick=toggleRemoveUserModal class="btn btn btn_md btn_plain" type="button" name="removeUser" label="Удалить пользователя" }}} </li>
+                    </ul>
+               {{/Menu}}
+        </div>
+
     </div>
     <div class="dialog chat__dialog">
-        {{#each messages }}
-             <div class="row {{#if author }} dialog__sent row_end{{ else }} dialog__receive{{/if}}">
+        {{#each state.messages }}
+             <div class="row mb-1 {{#if author }} dialog__sent row_end {{ else }} dialog__receive{{/if}}">
                 <div class="row">
-                    {{#if message }}
-                        <div class="{{#if author }}message message_sent{{ else }}message message_receive {{/if}}">
-                            {{ message }}
-                            {{#if status }}
+                    {{#if content }}
+                        <div class="{{#if author }} message message_sent {{ else }} message message_receive {{/if}}">
+                            {{ content }}
+
+                            {{ is_read }}
+                            {{#if is_read }}
                                 <svg width="11" height="5" viewBox="0 0 11 5" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <line y1="-0.5" x2="3.765" y2="-0.5" transform="matrix(0.705933 0.708278 -0.705933 0.708278 0.700195 2.33301)" stroke="#3369F3"/>
                                 <line y1="-0.5" x2="5.6475" y2="-0.5" transform="matrix(0.705933 -0.708278 0.705933 0.708278 3.35828 5)" stroke="#3369F3"/>

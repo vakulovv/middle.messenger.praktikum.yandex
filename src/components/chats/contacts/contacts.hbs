@@ -1,10 +1,13 @@
-<ul class="contacts m-1">
-    {{#each contacts }}
-        <li class="contacts__item">{{{ ContactsItem
-            user=user
+<ul class="contacts m-1" >
+    {{#each state.contacts  }}
+        <li class="contacts__item {{#if active}} contacts__item_active {{/if}}"  >{{{ ContactsItem
+            id=id
+            active=active
+            title=title
             unread=unread
-            message=message
-            time=time
+            last_message=last_message
+            created_by=created_by
+            onClick=../setActive
             }}}  </li>
     {{/each}}
 </ul>

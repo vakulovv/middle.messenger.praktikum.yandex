@@ -5,9 +5,17 @@ export default class Button extends Component {
     super({ componentName: 'Button', ...props });
   }
 
+  init() {
+    const { props } = this;
+    this.events = {
+      click: props.onClick,
+    };
+    return true;
+  }
+
   render() {
     return (`
-            <button type="submit" name="{{name}}" class="btn {{class}}">{{ label }}</button>
+            <button type="{{type}}" name="{{name}}" class="btn {{class}}" data-id="{{data-id}}"> {{ label }} {{{icon}}}</button>
         `);
   }
 }

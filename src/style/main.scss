@@ -411,6 +411,10 @@ h3, h4 {
     font-size: 1.5em;
     font-family: Avenir,Helvetica,Arial, sans-serif;
     @include border-radius($radius: 50%);
+
+    &_gray {
+      background: #eee;
+    }
   }
 
   &_gray {
@@ -421,6 +425,11 @@ h3, h4 {
     border-right: 1px solid #d5d5d5;
     padding: 0 10px;
   }
+}
+
+/* Border */
+.border {
+  border: 1px solid #333333;
 }
 
 /* Circle */

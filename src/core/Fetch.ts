@@ -43,7 +43,9 @@ class HTTPTransport {
 
   /* eslint class-methods-use-this: 0 */
   request = (url: string, options: Record<string, any> = {}, timeout = 5000) => {
-    const { method = '', headers = {}, data } = options;
+    const {
+      method = '', headers = {}, data, withCredentials,
+    } = options;
 
     return new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest();
@@ -63,6 +65,10 @@ class HTTPTransport {
         });
       }
 
+      if (withCredentials) {
+        xhr.withCredentials = true;
+      }
+
       xhr.timeout = timeout;
 
       xhr.onload = () => {
@@ -78,9 +84,13 @@ class HTTPTransport {
 
       if (method === METHODS.GET || !data) {
         xhr.send();
-      } else {
+      } else if (headers['Content-Type'] === 'application/json') {
         xhr.send(JSON.stringify(data));
+      } else {
+        xhr.send(data);
       }
     });
   };
 }
+
+export default HTTPTransport;

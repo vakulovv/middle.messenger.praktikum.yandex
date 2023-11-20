@@ -1,5 +1,7 @@
 import EventBus from './EventBus';
 import { compile, register } from './Template';
+import Router from './Router';
+import Api from '../services/index';
 
 type IProps = Record<string, any>;
 type IEvents = Record<string, (event: Event) => void>
@@ -11,10 +13,10 @@ enum Events {
     FLOW_RENDER = 'flow:render',
 }
 
-export default abstract class Component {
+export default class Component {
   protected events: IEvents = {};
 
-  protected domElement:Element | null;
+  public domElement:Element | null;
 
   protected children: Array<Record<string, any>> = [];
 
@@ -22,11 +24,18 @@ export default abstract class Component {
 
   protected props: IProps;
 
+  protected router: any;
+
+  protected api: typeof Api;
+
   constructor(props: IProps, children?: Record<string, any>) {
     const eventBus = new EventBus();
     this.domElement = null;
     this.eventBus = () => eventBus;
-    this.props = this._makePropsProxy({ ...props, state: {} });
+    this.props = this._makePropsProxy({ ...props, state: { ...props.state } });
+
+    this.router = Router.instance;
+    this.api = Api;
 
     if (children !== undefined
             && children !== null
@@ -55,6 +64,11 @@ export default abstract class Component {
   }
 
   _componentDidMount() {
+    this.componentDidMount();
+    return true;
+  }
+
+  componentDidMount() {
     return true;
   }
 
@@ -62,6 +76,10 @@ export default abstract class Component {
     const response = this.componentDidUpdate();
     if (response) {
       this.eventBus().emit(Events.FLOW_RENDER);
+    }
+
+    if (this.children) {
+      // this.children.forEach(({ component }) => component._componentDidUpdate());
     }
   }
 
@@ -181,5 +199,13 @@ export default abstract class Component {
         return true;
       },
     });
+  }
+
+  show() {
+    this.getNode().setAttribute('style', 'display');
+  }
+
+  hide() {
+    this.getNode().setAttribute('style', 'display: none');
   }
 }
