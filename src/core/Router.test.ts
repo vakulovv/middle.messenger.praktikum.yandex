@@ -1,7 +1,7 @@
 import { beforeEach, describe, it } from 'mocha';
 import sinon from 'sinon';
 import { expect } from 'chai';
-import Router from './router';
+import Router from './Router';
 
 describe('Router', () => {
   let router: Router;
