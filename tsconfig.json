@@ -12,7 +12,10 @@
     "noEmit": true,
     "moduleResolution": "node",
     "allowImportingTsExtensions": true,
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "allowJs": true,
+    "esModuleInterop": true
   },
-  "include": ["src", "typings/hbs.d.ts"]
+  "include": ["src", "typings/hbs.d.ts"],
+  "exclude": ["./src/**/*.test.ts"]
 }
