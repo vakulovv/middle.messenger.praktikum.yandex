@@ -10,7 +10,7 @@ const enum METHODS {
  * На входе: объект. Пример: {a: 1, b: 2, c: {d: 123}, k: [1, 2, 3]}
  * На выходе: строка. Пример: ?a=1&b=2&c=[object Object]&k=1,2,3
  */
-function queryStringify(data: Record<string, string>): string {
+export function queryStringify(data: Record<string, string>): string {
   // Можно делать трансформацию GET-параметров в отдельной функции
   return `?${Object.keys(data).map((key) => `${key}=${data[key]}`).join('&')}`;
 }
